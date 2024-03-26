@@ -28,7 +28,7 @@ function draw() {
       );
     // rad = rad * 1.002;
   }
-  if (frameCount % 750 === 0) {
+  if (frameCount % 1000 === 0) {
     if (r === 0) {
       r = 255;
       g = 255;
