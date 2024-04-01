@@ -4,7 +4,7 @@ function setup() {
   background(220);
   createCanvas(windowWidth, windowHeight);
 
-  rad = windowWidth / 4;
+  rad = windowWidth / 8;
   t = new TriangleOnCircle({ x: windowWidth / 2, y: windowHeight / 2 }, rad);
   r = 0;
   g = 0;
