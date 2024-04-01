@@ -1,4 +1,4 @@
-class Logo {
+class BouncingBall {
   constructor(top_left_corner, bottom_right_corner, radius) {
     this.top_left_corner = top_left_corner;
     this.bottom_right_corner = bottom_right_corner;
