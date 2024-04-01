@@ -4,8 +4,8 @@ function setup() {
   let centerX = width / 2;
   let centerY = height / 2;
 
-  let rectWidth = width / 6;
-  let rectHeight = height / 6;
+  rectWidth = width / 8;
+  rectHeight = height / 6;
 
   upperLeftCorner = [centerX - rectWidth / 2, centerY - rectHeight / 2];
   lowerRightCorner = [centerX + rectWidth / 2, centerY + rectHeight / 2];
@@ -19,47 +19,11 @@ function setup() {
 
 function draw() {
   background(220);
-  rect(upperLeftCorner[0], upperLeftCorner[1], width / 2, height / 2);
-  quad(
-    0,
-    0,
-    upperLeftCorner[0],
-    upperLeftCorner[1],
-    upperLeftCorner[0],
-    lowerRightCorner[1],
-    0,
-    height
-  );
-  quad(
-    0,
-    0,
-    upperLeftCorner[0],
-    upperLeftCorner[1],
-    lowerRightCorner[0],
-    upperLeftCorner[1],
-    width,
-    0
-  );
-  quad(
-    lowerRightCorner[0],
-    upperLeftCorner[1],
-    width,
-    0,
-    width,
-    height,
-    lowerRightCorner[0],
-    lowerRightCorner[1]
-  );
-  quad(
-    upperLeftCorner[0],
-    lowerRightCorner[1],
-    lowerRightCorner[0],
-    lowerRightCorner[1],
-    width,
-    height,
-    0,
-    height
-  );
+  rect(upperLeftCorner[0], upperLeftCorner[1], rectWidth, rectHeight);
+  line(0, 0, upperLeftCorner[0], upperLeftCorner[1]);
+  line(width, 0, lowerRightCorner[0], upperLeftCorner[1]);
+  line(width, height, lowerRightCorner[0], lowerRightCorner[1]);
+  line(0, height, upperLeftCorner[0], lowerRightCorner[1]);
 
   for (i = 0; i < count; i++) {
     balls[i].move();
