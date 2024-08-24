@@ -1,37 +1,42 @@
 function setup() {
-  count = 1;
   createCanvas(windowWidth, windowHeight);
-  let centerX = width / 2;
-  let centerY = height / 2;
 
-  rectWidth = width / 8;
-  rectHeight = height / 6;
+  background(220);
 
-  upperLeftCorner = [centerX - rectWidth / 2, centerY - rectHeight / 2];
-  lowerRightCorner = [centerX + rectWidth / 2, centerY + rectHeight / 2];
+  rectWidth = windowWidth / 8;
+  rectHeight = windowHeight / 8;
+
+  bottomLeft = createVector(
+    windowWidth / 2 - rectWidth / 2,
+    windowHeight / 2 - rectHeight / 2
+  );
+
   balls = [];
-  y = 100;
-  for (i = 0; i < count; i++) {
-    balls[i] = new BouncingBall(upperLeftCorner, lowerRightCorner, y);
-    y -= random(0, 10);
-  }
-  console.log(upperLeftCorner);
-  console.log(lowerRightCorner);
+
+  balls[0] = new BouncingBall(bottomLeft, rectWidth, rectHeight);
 }
 
 function draw() {
+  frameRate(5);
+  // Translate to bottom left corner
   translate(0, height);
+
+  // Invert the y-axis
   scale(1, -1);
-  frameRate(1);
-  background(220);
-  // rect(upperLeftCorner[0], upperLeftCorner[1], rectWidth, rectHeight);
-  // line(0, 0, upperLeftCorner[0], upperLeftCorner[1]);
-  // line(width, 0, lowerRightCorner[0], upperLeftCorner[1]);
-  // line(width, height, lowerRightCorner[0], lowerRightCorner[1]);
-  // line(0, height, upperLeftCorner[0], lowerRightCorner[1]);
-  circle(0, 0, 10);
-  // for (i = 0; i < count; i++) {
-  //   balls[i].move();
-  //   balls[i].show();
-  // }
+
+  // Draw the rectangle
+  rect(bottomLeft.x, bottomLeft.y, rectWidth, rectHeight);
+
+  line(bottomLeft.x, bottomLeft.y, 0, 0);
+  line(bottomLeft.x + rectWidth, bottomLeft.y, windowWidth, 0);
+  line(
+    bottomLeft.x + rectWidth,
+    bottomLeft.y + rectHeight,
+    windowWidth,
+    windowHeight
+  );
+  line(bottomLeft.x, bottomLeft.y + rectHeight, 0, windowHeight);
+
+  balls[0].move();
+  balls[0].show();
 }
