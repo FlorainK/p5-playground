@@ -11,11 +11,13 @@ function setup() {
 
   balls = [];
 
-  balls[0] = new BouncingBall(bottomLeft, rectWidth, rectHeight);
+  for (let i = 0; i < 100; i++) {
+    balls[i] = new BouncingBall(bottomLeft, rectWidth, rectHeight);
+  }
 }
 
 function draw() {
-  frameRate(20);
+  frameRate(60);
   background(220);
   // Translate to bottom left corner
   translate(0, height);
@@ -35,7 +37,10 @@ function draw() {
     windowHeight
   );
   line(bottomLeft.x, bottomLeft.y + rectHeight, 0, windowHeight);
-
-  balls[0].move();
-  balls[0].show();
+  balls.sort((a, b) => a.center.z - b.center.z);
+  for (let i = 0; i < balls.length; i++) {
+    console.log(i);
+    balls[i].move();
+    balls[i].show();
+  }
 }
