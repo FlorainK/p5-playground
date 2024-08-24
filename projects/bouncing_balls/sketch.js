@@ -1,8 +1,6 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  background(220);
-
   rectWidth = windowWidth / 8;
   rectHeight = windowHeight / 8;
 
@@ -17,7 +15,8 @@ function setup() {
 }
 
 function draw() {
-  frameRate(5);
+  frameRate(20);
+  background(220);
   // Translate to bottom left corner
   translate(0, height);
 
