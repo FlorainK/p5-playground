@@ -1,5 +1,5 @@
 function setup() {
-  count = 20;
+  count = 1;
   createCanvas(windowWidth, windowHeight);
   let centerX = width / 2;
   let centerY = height / 2;
@@ -15,18 +15,23 @@ function setup() {
     balls[i] = new BouncingBall(upperLeftCorner, lowerRightCorner, y);
     y -= random(0, 10);
   }
+  console.log(upperLeftCorner);
+  console.log(lowerRightCorner);
 }
 
 function draw() {
+  translate(0, height);
+  scale(1, -1);
+  frameRate(1);
   background(220);
-  rect(upperLeftCorner[0], upperLeftCorner[1], rectWidth, rectHeight);
-  line(0, 0, upperLeftCorner[0], upperLeftCorner[1]);
-  line(width, 0, lowerRightCorner[0], upperLeftCorner[1]);
-  line(width, height, lowerRightCorner[0], lowerRightCorner[1]);
-  line(0, height, upperLeftCorner[0], lowerRightCorner[1]);
-
-  for (i = 0; i < count; i++) {
-    balls[i].move();
-    balls[i].show();
-  }
+  // rect(upperLeftCorner[0], upperLeftCorner[1], rectWidth, rectHeight);
+  // line(0, 0, upperLeftCorner[0], upperLeftCorner[1]);
+  // line(width, 0, lowerRightCorner[0], upperLeftCorner[1]);
+  // line(width, height, lowerRightCorner[0], lowerRightCorner[1]);
+  // line(0, height, upperLeftCorner[0], lowerRightCorner[1]);
+  circle(0, 0, 10);
+  // for (i = 0; i < count; i++) {
+  //   balls[i].move();
+  //   balls[i].show();
+  // }
 }
