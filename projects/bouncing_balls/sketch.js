@@ -37,9 +37,8 @@ function draw() {
     windowHeight
   );
   line(bottomLeft.x, bottomLeft.y + rectHeight, 0, windowHeight);
-  balls.sort((a, b) => a.center.z - b.center.z);
+  balls.sort((a, b) => a.center.z + b.center.z);
   for (let i = 0; i < balls.length; i++) {
-    console.log(i);
     balls[i].move();
     balls[i].show();
   }
