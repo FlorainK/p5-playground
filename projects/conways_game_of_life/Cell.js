@@ -1,26 +1,23 @@
 class Cell {
   constructor(alive) {
     this.alive = alive;
+    this.nextState = alive;
   }
 
   countNeighbours(neighbours) {
-    let count = 0;
-    for (let neighbour of neighbours) {
-      if (neighbour.alive) {
-        count++;
-      }
-    }
-    return count;
+    return neighbours.filter((neighbor) => neighbor.alive).length;
   }
 
-  updateState(neighbours) {
+  calculateNextState(neighbours) {
     let neighboursCount = this.countNeighbours(neighbours);
-    // console.log(neighboursCount);
-    if (neighboursCount === 3) {
-      return true; // born
-    } else if (neighboursCount > 3 || neighboursCount < 2) {
-      return false; // over/underpopulation
+    if (this.alive) {
+      this.nextState = neighboursCount === 2 || neighboursCount === 3; // Survive
+    } else {
+      this.nextState = neighboursCount === 3; // Reproduce
     }
-    return this.alive; // remains the same
+  }
+
+  applyNextState() {
+    this.alive = this.nextState;
   }
 }
