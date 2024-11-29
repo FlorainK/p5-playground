@@ -1,13 +1,22 @@
 var lifeMatrix = [];
-var NUMROWS = 10;
-var NUMCOLUMNS = 10;
+var PATTERN;
+var PATTERNNAME = "2enginecordershipseedrle.json";
+var NUMROWS, NUMCOLUMNS;
+
+function preload() {
+  PATTERN = loadJSON("./patterns/data/json/" + PATTERNNAME);
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  NUMROWS = PATTERN.y;
+  NUMCOLUMNS = PATTERN.x;
+  console.log(PATTERN);
   for (let row = 0; row < NUMROWS; row++) {
     lifeMatrix.push([]);
     for (let column = 0; column < NUMCOLUMNS; column++) {
-      lifeMatrix[row].push(new Cell(random(0, 1) < 0.5));
+      console.log(row, column);
+      lifeMatrix[row].push(new Cell(PATTERN.matrix[row][column]));
     }
   }
 }
@@ -64,7 +73,7 @@ function drawGrid(cells, cellSize) {
 }
 
 function draw() {
-  frameRate(3);
+  frameRate(60);
 
   // Determine the next state for all cells
   for (let row = 0; row < NUMROWS; row++) {
@@ -87,6 +96,14 @@ function draw() {
     }
   }
 
+  let cellSize;
+  // calculate the size
+  if (NUMCOLUMNS > NUMROWS) {
+    cellSize = (windowWidth * 0.4) / NUMCOLUMNS;
+  } else {
+    cellSize = (windowHeight * 0.3) / NUMROWS;
+  }
+
   // Draw the grid
-  drawGrid(lifeMatrix, 30);
+  drawGrid(lifeMatrix, cellSize);
 }

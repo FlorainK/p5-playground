@@ -7,13 +7,12 @@
   - Each cell with two or three neighbors survives.
   - Each cell with three neighbors becomes populated.
   
-### Code:
+### encoding:
 
-- Gameboard (matrix)
-- cell (class)
-  - attributes:
-    - alive
-  - methods:
-    - nextState()
-    - countNeighbours(6 * other)
-    - 
+https://conwaylife.com/wiki/Run_Length_Encoded
+
+
+### patterns download:
+
+
+http://www.mindspring.com/~alanh/lifep.zip
