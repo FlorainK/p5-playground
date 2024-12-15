@@ -1,14 +1,15 @@
-const rows = 50;
-const columns = 50;
+const rows = 100;
+const columns = 100;
 var offset = 0;
-var change = 0.01;
+var change = 0.005;
 var particles = [];
-var particle_count = 50;
+var particle_count = 400;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   for (var i = 0; i < particle_count; i++)
-    particles.push(new Particle(rows, columns, 200));
+    particles.push(new Particle(rows, columns, 50));
+  background(255);
 }
 
 function draw() {
@@ -17,7 +18,7 @@ function draw() {
   for (var r = 0; r < rows; r++) {
     var row = [];
     for (var c = 0; c < columns; c++) {
-      let v = createVector(5, 5);
+      let v = createVector(10, 10);
 
       noise_factor = noise(r * 0.1, c * 0.1, offset);
       v.rotate(noise_factor * TWO_PI);
