@@ -34,45 +34,47 @@ class Particle {
   }
 
   check_borders() {
-    //   if one dimension hits a border and gets reset, we must remark to not draw a line
-    var needs_update = false;
+    var needs_reset = false;
 
     var current_position = this.positions[0];
 
-    //   check x
+    // Check x
     if (current_position.x > displayWidth) {
-      needs_update = true;
       current_position.x = 0;
+      needs_reset = true;
     } else if (current_position.x < 0) {
-      needs_update = true;
-      current_position.x = windowWidth;
+      current_position.x = displayWidth;
+      needs_reset = true;
     }
-    //   check y
+    // Check y
     if (current_position.y > windowHeight) {
-      needs_update = true;
       current_position.y = 0;
+      needs_reset = true;
     } else if (current_position.y < 0) {
-      needs_update = true;
       current_position.y = windowHeight;
+      needs_reset = true;
     }
 
-    if (needs_update) {
-      //   this.add_position(false);
-      this.add_position(current_position);
+    if (needs_reset) {
+      this.positions.unshift(false); // Mark discontinuity
+      this.add_position(current_position.copy());
+      console.log("reset detected");
+      console.log(this.positions);
     }
   }
 
   show() {
     for (var i = 0; i < this.positions.length - 1; i++) {
-      if (this.positions[i] != false || this.positions[i + 1] != false) {
-        line(
-          this.positions[i].x,
-          this.positions[i].y,
-          this.positions[i + 1].x,
-          this.positions[i + 1].y
-        );
+      // Skip drawing if discontinuity marker is found
+      if (this.positions[i] === false || this.positions[i + 1] === false) {
+        continue;
       }
+      line(
+        this.positions[i].x,
+        this.positions[i].y,
+        this.positions[i + 1].x,
+        this.positions[i + 1].y
+      );
     }
-    // console.log(this.positions);
   }
 }

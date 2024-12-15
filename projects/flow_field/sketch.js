@@ -3,7 +3,7 @@ const columns = 50;
 var offset = 0;
 var change = 0.01;
 var particles = [];
-var particle_count = 100;
+var particle_count = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,7 +17,7 @@ function draw() {
   for (var r = 0; r < rows; r++) {
     var row = [];
     for (var c = 0; c < columns; c++) {
-      let v = createVector(5, 5);
+      let v = createVector(50, 50);
 
       noise_factor = noise(r * 0.1, c * 0.1, offset);
       v.rotate(noise_factor * TWO_PI);
@@ -36,7 +36,7 @@ function draw() {
     particle.update(flowfiel_mat);
     particle.show();
   });
-  // frameRate(1);
+  frameRate(1);
 }
 
 // next steps:
