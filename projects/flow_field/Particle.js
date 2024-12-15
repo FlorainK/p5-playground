@@ -36,14 +36,14 @@ class Particle {
   check_borders() {
     var needs_reset = false;
 
-    var current_position = this.positions[0];
+    var current_position = this.positions[0].copy();
 
     // Check x
     if (current_position.x > displayWidth) {
       current_position.x = 0;
       needs_reset = true;
     } else if (current_position.x < 0) {
-      current_position.x = displayWidth;
+      current_position.x = displayWidth - 1;
       needs_reset = true;
     }
     // Check y
@@ -51,15 +51,12 @@ class Particle {
       current_position.y = 0;
       needs_reset = true;
     } else if (current_position.y < 0) {
-      current_position.y = windowHeight;
+      current_position.y = windowHeight - 1;
       needs_reset = true;
     }
 
     if (needs_reset) {
-      this.positions.unshift(false); // Mark discontinuity
-      this.add_position(current_position.copy());
-      console.log("reset detected");
-      console.log(this.positions);
+      this.positions.splice(0, 0, current_position, false);
     }
   }
 
