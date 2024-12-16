@@ -14,27 +14,30 @@ function setup() {
 
 function draw() {
   background(255);
-  var flowfiel_mat = [];
-  for (var r = 0; r < rows; r++) {
-    var row = [];
-    for (var c = 0; c < columns; c++) {
-      let v = createVector(10, 10);
 
-      noise_factor = noise(r * 0.1, c * 0.1, offset);
-      v.rotate(noise_factor * TWO_PI);
-      row.push(v);
-      // line(
-      //   (windowWidth * c) / columns,
-      //   (windowHeight * r) / rows,
-      //   (windowWidth * c) / columns + v.x,
-      //   (windowHeight * r) / rows + v.y
-      // );
-    }
-    flowfiel_mat.push(row);
-  }
+  flowField = new FlowField(noise, rows, columns);
+
+  // var flowfiel_mat = [];
+  // for (var r = 0; r < rows; r++) {
+  //   var row = [];
+  //   for (var c = 0; c < columns; c++) {
+  //     let v = createVector(10, 10);
+
+  //     noise_factor = noise(r * 0.1, c * 0.1, offset);
+  //     v.rotate(noise_factor * TWO_PI);
+  //     row.push(v);
+  //     // line(
+  //     //   (windowWidth * c) / columns,
+  //     //   (windowHeight * r) / rows,
+  //     //   (windowWidth * c) / columns + v.x,
+  //     //   (windowHeight * r) / rows + v.y
+  //     // );
+  //   }
+  //   flowfiel_mat.push(row);
+  // }
   offset += change;
   particles.forEach((particle) => {
-    particle.update(flowfiel_mat);
+    particle.update(flowField);
     particle.show();
   });
 }

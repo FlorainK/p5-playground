@@ -16,7 +16,7 @@ class Particle {
     var column = floor(
       (this.positions[0].y / displayHeight) * this.column_count
     );
-    var influence_vector = flowfield[row][column].mult(0.2);
+    var influence_vector = flowfield.getVector(row, column).mult(0.2);
     this.direction.mult(0.8);
     this.direction.add(influence_vector);
   }
@@ -67,7 +67,7 @@ class Particle {
         continue;
       }
       stroke(0, 50); // Set stroke color with transparency (127 out of 255 is 0.5)
-      strokeWeight(0.5);
+      strokeWeight(0.4);
       line(
         this.positions[i].x,
         this.positions[i].y,
