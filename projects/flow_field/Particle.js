@@ -29,7 +29,7 @@ class Particle {
 
   add_position(vec) {
     if (this.positions.unshift(vec) > this.trace_length) {
-      this.positions.pop();
+      this.positions = this.positions.slice(0, 50);
     }
   }
 

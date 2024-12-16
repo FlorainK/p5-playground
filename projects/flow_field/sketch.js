@@ -8,7 +8,7 @@ var particle_count = 400;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   for (var i = 0; i < particle_count; i++)
-    particles.push(new Particle(rows, columns, 50));
+    particles.push(new Particle(rows, columns, 25));
   background(255);
 }
 
@@ -37,7 +37,7 @@ function draw() {
   // }
   offset += change;
   particles.forEach((particle) => {
-    particle.update(flowField);
+    particle.update(flowField, offset);
     particle.show();
   });
 }
